@@ -181,12 +181,11 @@
         교사들을 위한 비밀 검색 아카이브 &copy; 2026
     </footer>
 
-    <!-- 파이어베이스 및 로직 스크립트 -->
+    <!-- 파이어베이스 연동 스크립트 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
         import { getDatabase, ref, set, get, child, remove, push } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
 
-        // 수민님의 파이어베이스 설정 정보
         const firebaseConfig = {
             apiKey: "AIzaSyAaL07U5q3gZhiB8ANHxeA3MRs7K7rXstw",
             authDomain: "teaching-55fe1.firebaseapp.com",
@@ -204,15 +203,14 @@
         let currentActiveMode = 'case';
         let cachedPosts = [];
 
-        // 데이터베이스에서 모든 글 실시간 동기화 가져오기
         window.fetchPostsFromFirebase = async function() {
-            const dbRef = ref(db);
             try {
-                const snapshot = await get(child(dbRef, 'posts'));
+                const postsRef = ref(db, 'posts');
+                const snapshot = await get(postsRef);
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     cachedPosts = Object.keys(data).map(key => ({
-                        firebaseKey: key, // 파이어베이스 고유 키
+                        firebaseKey: key,
                         ...data[key]
                     }));
                 } else {
@@ -225,7 +223,6 @@
             refreshCurrentView();
         }
 
-        // 초기 실행 및 데이터 로드
         fetchPostsFromFirebase();
 
         window.toggleAdminMode = function() {
@@ -627,7 +624,6 @@
 
             try {
                 if (firebaseKey) {
-                    // 기존 글 수정
                     await set(ref(db, 'posts/' + firebaseKey), {
                         type,
                         area,
@@ -637,7 +633,6 @@
                     });
                     alert('성공적으로 수정되었습니다!');
                 } else {
-                    // 새 글 등록 (파이어베이스 push 사용)
                     const newPostRef = push(ref(db, 'posts'));
                     await set(newPostRef, {
                         type,
@@ -650,7 +645,7 @@
                 }
 
                 closeWriteModal();
-                await fetchPostsFromFirebase(); // 서버 데이터 다시 불러와서 화면 갱신
+                await fetchPostsFromFirebase();
             } catch (error) {
                 console.error("저장 실패:", error);
                 alert('저장 중 오류가 발생했습니다.');
