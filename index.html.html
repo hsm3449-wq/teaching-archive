@@ -23,7 +23,7 @@
 </head>
 <body class="bg-slate-50 min-h-screen text-slate-800 flex flex-col justify-between">
 
-    <!-- 상단 헤더 (모바일 줄바꿈 방지 및 가로 스크롤/축소 대응) -->
+    <!-- 상단 헤더 -->
     <header class="bg-white border-b border-slate-200 px-4 sm:px-8 py-4 flex flex-col sm:flex-row justify-between items-center shadow-sm gap-3">
         <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-start">
             <div class="flex items-center space-x-3">
@@ -45,6 +45,9 @@
         <div class="flex items-center space-x-1 sm:space-x-4 overflow-x-auto w-full sm:w-auto justify-start sm:justify-end pb-1 sm:pb-0">
             <button onclick="openAllList()" class="text-xs sm:text-sm text-slate-600 hover:text-indigo-600 font-semibold transition whitespace-nowrap px-2 py-1">
                 📚 사례 살펴보기
+            </button>
+            <button onclick="openMaterialList()" class="text-xs sm:text-sm text-slate-600 hover:text-indigo-600 font-semibold transition whitespace-nowrap px-2 py-1">
+                💡 성찰 자료
             </button>
             <button onclick="openReflectionList()" class="text-xs sm:text-sm text-slate-600 hover:text-indigo-600 font-semibold transition whitespace-nowrap px-2 py-1">
                 📝 성찰 리스트
@@ -84,24 +87,30 @@
                 </button>
             </div>
 
-            <!-- 하단 카드 메뉴 3개 -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto pt-6">
-                <div onclick="openAllList()" class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 cursor-pointer transition text-left space-y-3 group">
-                    <div class="text-3xl">📚</div>
-                    <h3 class="font-bold text-slate-900 text-lg group-hover:text-indigo-600 transition">사례 살펴보기</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">선생님들이 공유한 생생한 현장 교육 사례들입니다.</p>
+            <!-- 하단 카드 메뉴 4개 (요청하신 순서 반영) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto pt-6">
+                <div onclick="openAllList()" class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 cursor-pointer transition text-left space-y-2 group">
+                    <div class="text-2xl">📚</div>
+                    <h3 class="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition">사례 살펴보기</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">현장 교육 사례들입니다.</p>
                 </div>
 
-                <div onclick="openReflectionList()" class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 cursor-pointer transition text-left space-y-3 group">
-                    <div class="text-3xl">📝</div>
-                    <h3 class="font-bold text-slate-900 text-lg group-hover:text-indigo-600 transition">성찰 리스트 보기</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">영역, 핵심 질문, 내용으로 구성된 생각 리스트입니다.</p>
+                <div onclick="openMaterialList()" class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 cursor-pointer transition text-left space-y-2 group">
+                    <div class="text-2xl">💡</div>
+                    <h3 class="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition">성찰 자료</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">자료 및 카드뉴스입니다.</p>
                 </div>
 
-                <div onclick="openPdfList()" class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 cursor-pointer transition text-left space-y-3 group">
-                    <div class="text-3xl">📖</div>
-                    <h3 class="font-bold text-slate-900 text-lg group-hover:text-indigo-600 transition">통합 사례집 보기</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">업로드된 교육 사례집 PDF 문서를 바로 열람하세요.</p>
+                <div onclick="openReflectionList()" class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 cursor-pointer transition text-left space-y-2 group">
+                    <div class="text-2xl">📝</div>
+                    <h3 class="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition">성찰 리스트 보기</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">생각을 돕는 리스트입니다.</p>
+                </div>
+
+                <div onclick="openPdfList()" class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 cursor-pointer transition text-left space-y-2 group">
+                    <div class="text-2xl">📖</div>
+                    <h3 class="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition">통합 사례집 보기</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">PDF 문서를 열람하세요.</p>
                 </div>
             </div>
         </div>
@@ -143,7 +152,7 @@
                             &#10095;
                         </button>
                     </div>
-                    <!-- 페이지 인디케이터 (예: 1 / 4) -->
+                    <!-- 페이지 인디케이터 -->
                     <div class="text-center text-xs font-semibold text-slate-500" id="slideIndicator">1 / 1</div>
                 </div>
 
@@ -168,6 +177,7 @@
                     <label class="block text-xs font-semibold text-slate-600 mb-1">구분 선택</label>
                     <select id="itemCategoryType" class="w-full px-3 py-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white" onchange="updateModalFields()">
                         <option value="case">교육 사례</option>
+                        <option value="material">성찰 자료</option>
                         <option value="reflection">교사 성찰 문항</option>
                         <option value="pdf">통합 사례집 (구글 드라이브 링크 입력)</option>
                     </select>
@@ -184,13 +194,13 @@
                     <label class="block text-xs font-semibold text-slate-600 mb-1">검색 키워드 (띄어쓰기 또는 쉼표 구분)</label>
                     <input type="text" id="postKeyword" placeholder="예: 문화, 소통" class="w-full px-3 py-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
                 </div>
-                <!-- 카드뉴스 여러 장 이미지 주소 입력 필드 (쉼표로 구분) -->
+                <!-- 카드뉴스 여러 장 이미지 주소 입력 필드 -->
                 <div id="imageFieldGroup">
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">카드뉴스 이미지 주소들 (여러 장인 경우 쉼표로 구분해서 입력)</label>
-                    <textarea id="postImageUrl" rows="2" placeholder="예: https://이미지1.jpg, https://이미지2.jpg, https://이미지3.jpg" class="w-full px-3 py-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"></textarea>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">카드뉴스 이미지 주소들 (여러 장인 경우 쉼표로 구분)</label>
+                    <textarea id="postImageUrl" rows="2" placeholder="예: https://lh3.googleusercontent.com/d/ID1, https://lh3.googleusercontent.com/d/ID2" class="w-full px-3 py-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"></textarea>
                 </div>
                 <div id="contentFieldGroup">
-                    <label id="contentLabel" class="block text-xs font-semibold text-slate-600 mb-1">상세 내용 및 노하우 (또는 PDF 구글 드라이브 링크)</label>
+                    <label id="contentLabel" class="block text-xs font-semibold text-slate-600 mb-1">상세 내용 및 노하우</label>
                     <textarea id="postContent" rows="5" placeholder="내용을 입력하세요." class="w-full px-3 py-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"></textarea>
                 </div>
             </div>
@@ -201,12 +211,12 @@
         </div>
     </div>
 
-    <!-- 푸터 -->
+    <!-- 푸터 (요청하신 문구로 변경) -->
     <footer class="text-center py-6 text-xs text-slate-400 border-t border-slate-200">
-        교사들을 위한 사례 검색 아카이브 &copy; 2026
+        교사들을 위한 성찰 아카이브 &copy; 2026
     </footer>
 
-    <!-- 파이어베이스 연동 및 슬라이드 로직 스크립트 -->
+    <!-- 파이어베이스 연동 및 로직 스크립트 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
         import { getDatabase, ref, set, get, child, remove, push } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
@@ -326,7 +336,13 @@
         window.openAllList = function() {
             currentActiveMode = 'case';
             const posts = cachedPosts.filter(p => p.type === 'case');
-            renderCards(posts, `다양한 사례 살펴보기 (${posts.length}개)`);
+            renderCards(posts, `사례 살펴보기 (${posts.length}개)`);
+        }
+
+        window.openMaterialList = function() {
+            currentActiveMode = 'material';
+            const posts = cachedPosts.filter(p => p.type === 'material');
+            renderCards(posts, `성찰 자료 (${posts.length}개)`);
         }
 
         window.openReflectionList = function() {
@@ -431,7 +447,6 @@
                 }
 
                 const keywordsHtml = post.keywords ? post.keywords.map(kw => `<span class="bg-indigo-50 text-indigo-600 text-xs px-2.5 py-1 rounded-lg font-medium">#${kw}</span>`).join(' ') : '';
-                const imgBadge = post.imageUrl ? `<span class="bg-purple-50 text-purple-700 text-xs px-2 py-0.5 rounded-md font-medium ml-2">📷 카드뉴스</span>` : '';
 
                 const card = document.createElement('div');
                 card.className = `bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3 transition reflection-item hover:shadow-md cursor-pointer ${dragClass}`;
@@ -445,10 +460,7 @@
                 card.innerHTML = `
                     <div class="flex justify-between items-start">
                         <div class="space-y-1.5 pr-4">
-                            <div class="flex items-center flex-wrap gap-1">
-                                <span class="bg-indigo-50 text-indigo-700 text-xs px-2.5 py-1 rounded-lg font-bold">📌 영역: ${post.area || '기본'}</span>
-                                ${imgBadge}
-                            </div>
+                            <span class="bg-indigo-50 text-indigo-700 text-xs px-2.5 py-1 rounded-lg font-bold">📌 영역: ${post.area || '기본'}</span>
                             <h3 class="text-lg font-bold text-slate-900 leading-snug">${post.title}</h3>
                         </div>
                         <div class="flex flex-wrap gap-1 justify-end" onclick="event.stopPropagation()">${keywordsHtml}</div>
@@ -564,9 +576,8 @@
                     `;
                 }
 
-                const typeBadge = post.type === 'reflection' ? `<span class="bg-amber-50 text-amber-700 text-xs px-2.5 py-1 rounded-lg font-medium">성찰문항</span>` : '';
+                const typeBadge = post.type === 'reflection' ? `<span class="bg-amber-50 text-amber-700 text-xs px-2.5 py-1 rounded-lg font-medium">성찰문항</span>` : (post.type === 'material' ? `<span class="bg-sky-50 text-sky-700 text-xs px-2.5 py-1 rounded-lg font-medium">성찰자료</span>` : '');
                 const areaInfo = post.area ? `<span class="bg-indigo-50 text-indigo-700 text-xs px-2.5 py-1 rounded-lg font-bold">📌 영역: ${post.area}</span>` : '';
-                const imgBadge = post.imageUrl ? `<span class="bg-purple-50 text-purple-700 text-xs px-2 py-0.5 rounded-md font-medium ml-2">📷 카드뉴스</span>` : '';
 
                 card.innerHTML = `
                     <div class="flex justify-between items-start">
@@ -574,7 +585,6 @@
                             <div class="flex items-center flex-wrap gap-1">
                                 ${areaInfo}
                                 ${typeBadge}
-                                ${imgBadge}
                             </div>
                             <h3 class="text-lg font-bold text-slate-800">${post.title}</h3>
                         </div>
@@ -587,7 +597,6 @@
             });
         }
 
-        // 카드뉴스 슬라이드 함수들
         window.openDetailModal = function(post) {
             const headerDiv = document.getElementById('detailModalHeader');
             const titleEl = document.getElementById('detailModalTitle');
@@ -601,7 +610,6 @@
             titleEl.innerText = post.title;
             contentEl.innerHTML = linkifyText(post.content);
 
-            // 이미지 처리 (쉼표로 구분하여 배열로 변환)
             if (post.imageUrl && post.imageUrl.trim() !== '') {
                 currentImages = post.imageUrl.split(',').map(img => img.trim()).filter(img => img.length > 0);
             } else {
@@ -656,6 +664,8 @@
             
             if (currentActiveMode === 'case') {
                 openAllList();
+            } else if (currentActiveMode === 'material') {
+                openMaterialList();
             } else if (currentActiveMode === 'reflection') {
                 openReflectionList();
             } else if (currentActiveMode === 'pdf') {
@@ -675,7 +685,7 @@
             document.getElementById('postId').value = '';
             document.getElementById('modalTitleText').innerText = '새로운 항목 추가';
             document.getElementById('saveButtonText').innerText = '등록하기';
-            document.getElementById('itemCategoryType').value = currentActiveMode === 'reflection' ? 'reflection' : (currentActiveMode === 'pdf' ? 'pdf' : 'case');
+            document.getElementById('itemCategoryType').value = currentActiveMode === 'material' ? 'material' : (currentActiveMode === 'reflection' ? 'reflection' : (currentActiveMode === 'pdf' ? 'pdf' : 'case'));
             document.getElementById('postArea').value = '';
             document.getElementById('postTitle').value = '';
             document.getElementById('postKeyword').value = '';
@@ -700,6 +710,12 @@
                 imageFieldGroup.classList.remove('hidden');
                 titleLabel.innerText = '핵심 질문';
                 titleInput.placeholder = '예: 다양한 문화와 배경을 존중하는 환경 구성이 되어 있는가?';
+                contentLabel.innerText = '상세 내용 및 노하우';
+            } else if (type === 'material') {
+                fieldGroupArea.classList.add('hidden');
+                imageFieldGroup.classList.remove('hidden');
+                titleLabel.innerText = '성찰 자료 제목';
+                titleInput.placeholder = '성찰 자료 제목을 입력하세요';
                 contentLabel.innerText = '상세 내용 및 노하우';
             } else if (type === 'pdf') {
                 fieldGroupArea.classList.add('hidden');
